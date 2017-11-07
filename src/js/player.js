@@ -531,6 +531,10 @@ class Player extends Component {
         tag.appendChild(el.firstChild);
       }
 
+      if (el.className.indexOf('video-js') === -1) {
+        el.className += ' video-js';
+      }
+
       el.appendChild(tag);
 
       playerElIngest = this.playerElIngest_ = el;
