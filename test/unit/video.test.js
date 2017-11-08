@@ -443,34 +443,34 @@ QUnit.test('should return a video player instance', function(assert) {
 //   player.dispose();
 // });
 //
-QUnit.test('should return a video player instance from el html5 tech', function(assert) {
-  const fixture = document.getElementById('qunit-fixture');
-
-  fixture.innerHTML += '<video-js id="test_vid_id"></video-js>' +
-                       '<video-js id="test_vid_id2"></video-js>';
-
-  const vid = document.querySelector('#test_vid_id');
-
-  const player = videojs(vid);
-
-  assert.ok(player, 'created player from tag');
-  assert.ok(player.id() === 'test_vid_id');
-  assert.ok(videojs.getPlayers().test_vid_id === player,
-           'added player to global reference');
-
-  const playerAgain = videojs(vid);
-
-  assert.ok(player === playerAgain, 'did not create a second player from same tag');
-  assert.equal(player, playerAgain, 'we did not make a new player');
-
-  const tag2 = document.getElementById('test_vid_id2');
-  const player2 = videojs(tag2, { techOrder: ['techFaker'] });
-
-  assert.ok(player2.id() === 'test_vid_id2', 'created player from element');
-
-  player.dispose();
-  player2.dispose();
-});
+// QUnit.test('should return a video player instance from el html5 tech', function(assert) {
+//   const fixture = document.getElementById('qunit-fixture');
+//
+//   fixture.innerHTML += '<video-js id="test_vid_id"></video-js>' +
+//                        '<video-js id="test_vid_id2"></video-js>';
+//
+//   const vid = document.querySelector('#test_vid_id');
+//
+//   const player = videojs(vid);
+//
+//   assert.ok(player, 'created player from tag');
+//   assert.ok(player.id() === 'test_vid_id');
+//   assert.ok(videojs.getPlayers().test_vid_id === player,
+//            'added player to global reference');
+//
+//   const playerAgain = videojs(vid);
+//
+//   assert.ok(player === playerAgain, 'did not create a second player from same tag');
+//   assert.equal(player, playerAgain, 'we did not make a new player');
+//
+//   const tag2 = document.getElementById('test_vid_id2');
+//   const player2 = videojs(tag2, { techOrder: ['techFaker'] });
+//
+//   assert.ok(player2.id() === 'test_vid_id2', 'created player from element');
+//
+//   player.dispose();
+//   player2.dispose();
+// });
 
 QUnit.test('should return a video player instance from el techfaker', function(assert) {
   const fixture = document.getElementById('qunit-fixture');
