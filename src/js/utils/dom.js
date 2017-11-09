@@ -558,7 +558,9 @@ export function findPosition(el) {
   if (!box) {
     return {
       left: 0,
-      top: 0
+      top: 0,
+      width: 0,
+      height: 0
     };
   }
 
@@ -576,7 +578,9 @@ export function findPosition(el) {
   // Android sometimes returns slightly off decimal values, so need to round
   return {
     left: Math.round(left),
-    top: Math.round(top)
+    top: Math.round(top),
+    width: box.width,
+    height: box.height
   };
 }
 
@@ -610,17 +614,17 @@ export function findPosition(el) {
 export function getPointerPosition(el, event) {
   const position = {};
   const box = findPosition(el);
-  const boxW = el.offsetWidth;
-  const boxH = el.offsetHeight;
+  const boxW = box.width;
+  const boxH = box.height;
 
   const boxY = box.top;
   const boxX = box.left;
-  let pageY = event.pageY;
-  let pageX = event.pageX;
+  let pageY = event.clientY;
+  let pageX = event.clientX;
 
   if (event.changedTouches) {
-    pageX = event.changedTouches[0].pageX;
-    pageY = event.changedTouches[0].pageY;
+    pageX = event.changedTouches[0].clientY;
+    pageY = event.changedTouches[0].clientX;
   }
 
   position.y = Math.max(0, Math.min(1, ((boxY - pageY) + boxH) / boxH));

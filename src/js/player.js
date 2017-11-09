@@ -740,6 +740,14 @@ class Player extends Component {
     this.updateStyleEl_();
   }
 
+  fireb(type, detail) {
+    this.styleEl_.dispatchEvent(new CustomEvent(type, {
+      detail: detail,
+      bubbles: true,
+      composed: true
+    }));
+  }
+
   /**
    * Update styles of the `Player` element (height, width and aspect ratio).
    *
@@ -824,6 +832,14 @@ class Player extends Component {
         padding-top: ${ratioMultiplier * 100}%;
       }
     `);
+
+    this.fireb('aspect-ratio', {
+      aspectRatio: aspectRatio,
+      ratioMultiplier: ratioMultiplier,
+      height: height,
+      width: width
+    });
+
   }
 
   /**

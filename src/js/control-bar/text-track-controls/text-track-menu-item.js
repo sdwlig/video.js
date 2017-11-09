@@ -54,7 +54,8 @@ class TextTrackMenuItem extends MenuItem {
     if (tracks.onchange === undefined) {
       let event;
 
-      this.on(['tap', 'click'], function() {
+      // Can't listen on both tap and click or in some environments (Chrome+Polymer 2.x), two events will be delivered.
+      this.on(['tap'], function() {
         if (typeof window.Event !== 'object') {
           // Android 2.3 throws an Illegal Constructor error for window.Event
           try {

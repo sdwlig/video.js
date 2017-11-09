@@ -65,7 +65,7 @@ class MouseTimeDisplay extends Component {
       const duration = this.player_.duration();
       const content = formatTime(seekBarPoint * duration, duration);
 
-      this.el_.style.left = `${seekBarRect.width * seekBarPoint}px`;
+      this.el_.style.left = `${seekBarRect.offsetWidth * seekBarPoint}px`;
       this.getChild('timeTooltip').update(seekBarRect, seekBarPoint, content);
     });
   }
